@@ -5,6 +5,7 @@ try:
     import os
     import pickle
     import numpy as np
+    import random
     print("Library Loaded Successfully ..........")
 except:
     print("Library not Found ! ")
@@ -56,7 +57,10 @@ class MasterImage(object):
                         pass
 
             data = np.asanyarray(self.image_data)
-
+            
+            # Shuffling data to get an accurate module
+            random.shuffle(data)
+            
             # Iterate over the Data
             for x in data:
                 self.x_data.append(x[0])        # Get the X_Data
@@ -68,7 +72,7 @@ class MasterImage(object):
             # reshape x_Data
 
             X_Data = X_Data.reshape(-1, self.IMAGE_SIZE, self.IMAGE_SIZE, 1)
-
+  
             return X_Data, Y_Data
         except:
             print("Failed to run Function Process Image ")
